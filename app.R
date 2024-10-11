@@ -164,9 +164,15 @@ server <- function(input, output, session) {
             inputId = paste0("cell_", row, "_", col),
             label = board[row, col],
             style = paste0(
-              "width: 120px; height: 90px; margin: 2px; ",
+              "width: 110px; height: 110px; margin: 0px 10px 0px 10px; ",
               "background-color: ", ifelse(row <= 2, PLAYER_COLOURS[1], PLAYER_COLOURS[2]), "; ",
-              "font-size: 20px;"
+              "font-size: 20px; ",
+              "border-radius: 50%; ",  # This makes the button circular
+              "display: flex; ",
+              "justify-content: center; ",
+              "align-items: center; ",
+              "border: none; ",  # Remove the default button border
+              "outline: none; "  # Remove the outline on focus
             )
           )
         })
