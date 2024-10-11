@@ -9,6 +9,8 @@ initialize_game <- function() {
   board[2:3, ] <- 4
   list(
     board = board,
+    p1_score = 0,
+    p2_score = 0,
     current_player = 1,
     game_over = FALSE,
     winner = NULL
@@ -60,8 +62,14 @@ make_move <- function(game_state, row, col) {
   # If the column of the final piece is in row 2 or 3 then pick up the players pieces in that column
   if (row %in% c(2, 3)) {
     captured <- board[5-row, col]
+    # Update the score:
+    if (row==2) {
+      game_state$p1_score <- game_state$p1_score + captured
+    }else{
+      game_state$p2_score <- game_state$p2_score + captured
+    }
+    # Remove the captured pieces from the board:
     board[5-row, col] <- 0
-    board[row, col] <- board[row, col] + captured
   }
   
   # Check if game is over
@@ -137,11 +145,11 @@ server <- function(input, output, session) {
   })
   
   output$player1_pieces <- renderText({
-    sum(game_state()$board[1:2, ])
+    game_state()$p1_score
   })
   
   output$player2_pieces <- renderText({
-    sum(game_state()$board[3:4, ])
+    game_state()$p2_score
   })
   
   output$game_board <- renderUI({
