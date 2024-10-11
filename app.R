@@ -103,12 +103,12 @@ ui <- page_sidebar(
     value_box(
       title = "Player 1",
       value = textOutput("player1_pieces"),
-      theme = value_box_theme(bg=PLAYER_COLOURS[1])
+      theme = value_box_theme(bg=PLAYER_COLOURS[1]),
+      style = "text-align: center;"
     )
   ),
   card(
     full_screen = TRUE,
-    card_header("Bao Board"),
     uiOutput("game_board")
   ),
   layout_columns(
@@ -116,7 +116,8 @@ ui <- page_sidebar(
     value_box(
       title = "Player 2",
       value = textOutput("player2_pieces"),
-      theme = value_box_theme(bg=PLAYER_COLOURS[2])
+      theme = value_box_theme(bg=PLAYER_COLOURS[2]),
+      style = "text-align: center;"
     )
   ),
   actionButton("reset_game", "Reset Game")
@@ -163,7 +164,7 @@ server <- function(input, output, session) {
             inputId = paste0("cell_", row, "_", col),
             label = board[row, col],
             style = paste0(
-              "width: 50px; height: 50px; margin: 2px; ",
+              "width: 120px; height: 90px; margin: 2px; ",
               "background-color: ", ifelse(row <= 2, PLAYER_COLOURS[1], PLAYER_COLOURS[2]), "; ",
               "font-size: 20px;"
             )
