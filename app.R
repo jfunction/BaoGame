@@ -2,6 +2,7 @@ source("packages.R")
 
 PLAYERS <- c("Purple", "Orange")
 PLAYER_COLOURS <- c("#D8B3FF80", "#FFDCBA80")
+MAX_MOVES <- 100
 
 # Initialize game state
 initialize_game <- function() {
@@ -44,7 +45,9 @@ make_move <- function(game_state, row, col) {
   current_location <- c(row, col)
   
   # Distribute pieces
-  while (pieces > 0) {
+  moves <- 0
+  while (pieces > 0 & moves < MAX_MOVES) {
+    moves <- moves + 1
     current_location <- next_location(current_location)
     row <- current_location[1]
     col <- current_location[2]
@@ -58,6 +61,11 @@ make_move <- function(game_state, row, col) {
       pieces <- board[row, col]
       board[row, col] <- 0
     }
+  }
+  if (moves >= MAX_MOVES) {
+    # Notify user
+    showNotification("Too many moves for this tile!", type = "warning")
+    return(game_state)
   }
   # If the column of the final piece is in row 2 or 3 then pick up the players pieces in that column
   if (row %in% c(2, 3)) {
