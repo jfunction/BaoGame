@@ -1,7 +1,7 @@
 source("packages.R")
 
-PLAYERS <- c("Red", "Green")
-PLAYER_COLOURS <- c("#FFB3BA", "#BAFFC9")
+PLAYERS <- c("Purple", "Orange")
+PLAYER_COLOURS <- c("#D8B3FF80", "#FFDCBA80")
 
 # Initialize game state
 initialize_game <- function() {
@@ -109,6 +109,7 @@ ui <- page_sidebar(
   ),
   card(
     full_screen = TRUE,
+    style = "background-color: gray;",
     uiOutput("game_board")
   ),
   layout_columns(
