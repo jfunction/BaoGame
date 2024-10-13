@@ -47,6 +47,12 @@ jobs:
         key: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{ inputs.cache-version }}-${{ hashFiles('renv.lock') }}
         restore-keys: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{inputs.cache-version }}-
 
+    - name: Restore packages
+      run: |
+        if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+        renv::restore()
+      shell: Rscript {0}
+
     - name: Install rsconnect
       run: install.packages('rsconnect')
       shell: Rscript {0}
