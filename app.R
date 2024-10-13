@@ -99,6 +99,7 @@ make_move <- function(game_state, row, col) {
 # UI ####
 ui <- page_sidebar(
   title = "Bao Game",
+  tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
   sidebar = sidebar(
     h4("Game Information"),
     textOutput("current_player"),
@@ -120,7 +121,7 @@ ui <- page_sidebar(
   ## Board ####
   card(
     full_screen = TRUE,
-    style = "background-color: gray;",
+    class = "game-board",
     uiOutput("game_board")
   ),
   ## Player 2 ####

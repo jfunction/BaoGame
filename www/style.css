@@ -1,0 +1,6 @@
+.game-board {
+  background-image: url("background.jpg"); /*https://pixabay.com/illustrations/wood-texture-dark-brown-1700562/*/
+  background-color: #b1998b;
+  background-blend-mode: soft-light;
+  background-size: cover;
+}
