@@ -4,6 +4,7 @@ PLAYERS <- c("Purple", "Orange")
 PLAYER_COLOURS <- c("#D8B3FF80", "#FFDCBA80")
 MAX_MOVES <- 100
 
+# Helper functions ####
 # Initialize game state
 initialize_game <- function() {
   board <- matrix(0, nrow = 4, ncol = 8)
