@@ -4,3 +4,21 @@
   background-blend-mode: soft-light;
   background-size: cover;
 }
+
+.player_tile {
+    width: 100px;
+    height: 100px;
+    margin: 0px 10px 0px 10px;
+    background-color: #00000080;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+/* when hovering over player_tile the color should always be white */
+.player_tile:hover {
+    color: white !important;
+}

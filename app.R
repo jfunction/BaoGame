@@ -178,17 +178,9 @@ server <- function(input, output, session) {
           actionButton(
             inputId = paste0("cell_", row, "_", col),
             label = board[row, col],
-            style = paste0(
-              "width: 110px; height: 110px; margin: 0px 10px 0px 10px; ",
-              "background-color: ", ifelse(row <= 2, PLAYER_COLOURS[1], PLAYER_COLOURS[2]), "; ",
-              "font-size: 20px; ",
-              "border-radius: 50%; ",  # This makes the button circular
-              "display: flex; ",
-              "justify-content: center; ",
-              "align-items: center; ",
-              "border: none; ",  # Remove the default button border
-              "outline: none; "  # Remove the outline on focus
-            )
+            class = "player_tile",
+            style = glue("outline: {ifelse(row <= 2, PLAYER_COLOURS[1], PLAYER_COLOURS[2])} solid 2px;",
+                         "color: {ifelse(row <= 2, PLAYER_COLOURS[1], PLAYER_COLOURS[2])};")
           )
         })
       )
