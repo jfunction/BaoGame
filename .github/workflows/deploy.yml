@@ -21,14 +21,13 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
 
-    - name: Install R dependencies
-      run: |
-        install.packages('renv')
-        renv::restore()
+    - name: Install renv
+      run: install.packages('renv')
       shell: Rscript {0}
 
-    - name: Install rsconnect
-      run: install.packages('rsconnect')
+    - name: Restore renv environment
+      run: |
+        renv::restore()
       shell: Rscript {0}
 
     - name: Deploy to shinyapps.io
@@ -41,5 +40,6 @@ jobs:
         rsconnect::setAccountInfo(name = Sys.getenv("SHINYAPPS_ACCOUNT"),
                                   token = Sys.getenv("SHINYAPPS_TOKEN"),
                                   secret = Sys.getenv("SHINYAPPS_SECRET"))
-        rsconnect::deployApp(appName = "BaoGame")
+        rsconnect::deployApp(appName = "BaoGame", 
+                             forceUpdate = TRUE)
       shell: Rscript {0}
