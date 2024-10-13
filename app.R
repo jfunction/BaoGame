@@ -96,6 +96,7 @@ make_move <- function(game_state, row, col) {
   game_state
 }
 
+# UI ####
 ui <- page_sidebar(
   title = "Bao Game",
   sidebar = sidebar(
@@ -106,6 +107,7 @@ ui <- page_sidebar(
     actionButton("undo", "Undo"),
     actionButton("redo", "Redo")
   ),
+  ## Player 1 ####
   layout_columns(
     fill = FALSE,
     value_box(
@@ -115,11 +117,13 @@ ui <- page_sidebar(
       style = "text-align: center;"
     )
   ),
+  ## Board ####
   card(
     full_screen = TRUE,
     style = "background-color: gray;",
     uiOutput("game_board")
   ),
+  ## Player 2 ####
   layout_columns(
     fill = FALSE,
     value_box(
@@ -163,6 +167,7 @@ server <- function(input, output, session) {
   })
   
   output$game_board <- renderUI({
+    # UI game_board ####
     board <- game_state()$board
     
     lapply(1:4, function(row) {
